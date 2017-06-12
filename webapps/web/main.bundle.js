@@ -1,6 +1,6 @@
 webpackJsonp([3,7],{
 
-/***/ 100:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15,7 +15,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
+var core_1 = __webpack_require__(5);
+var FullLayoutComponent = (function () {
+    function FullLayoutComponent() {
+        this.disabled = false;
+        this.status = { isopen: false };
+        this.date = new Date();
+        this.user = JSON.parse(localStorage.getItem('currentUser'));
+    }
+    FullLayoutComponent.prototype.toggled = function (open) {
+        console.log('Dropdown is now: ', open);
+    };
+    FullLayoutComponent.prototype.toggleDropdown = function ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        this.status.isopen = !this.status.isopen;
+    };
+    FullLayoutComponent.prototype.ngOnInit = function () { };
+    return FullLayoutComponent;
+}());
+FullLayoutComponent = __decorate([
+    core_1.Component({
+        selector: 'app-dashboard',
+        template: __webpack_require__(402)
+    }),
+    __metadata("design:paramtypes", [])
+], FullLayoutComponent);
+exports.FullLayoutComponent = FullLayoutComponent;
+//# sourceMappingURL=D:/Mobile/WORKSPACE/Wiki/wiki-project-client/src/full-layout.component.js.map
+
+/***/ }),
+
+/***/ 119:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(5);
 var SimpleLayoutComponent = (function () {
     function SimpleLayoutComponent() {
     }
@@ -34,16 +80,16 @@ exports.SimpleLayoutComponent = SimpleLayoutComponent;
 
 /***/ }),
 
-/***/ 156:
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"./authentification/authentification.module": [
-		378,
+		665,
 		1
 	],
 	"./dashboard/dashboard.module": [
-		379,
+		666,
 		0
 	]
 };
@@ -58,21 +104,21 @@ webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
 module.exports = webpackAsyncContext;
-webpackAsyncContext.id = 156;
+webpackAsyncContext.id = 207;
 
 
 /***/ }),
 
-/***/ 157:
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-var platform_browser_dynamic_1 = __webpack_require__(188);
-var app_module_1 = __webpack_require__(191);
-var environment_1 = __webpack_require__(197);
+var core_1 = __webpack_require__(5);
+var platform_browser_dynamic_1 = __webpack_require__(224);
+var app_module_1 = __webpack_require__(228);
+var environment_1 = __webpack_require__(234);
 if (environment_1.environment.production) {
     core_1.enableProdMode();
 }
@@ -81,7 +127,47 @@ platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1
 
 /***/ }),
 
-/***/ 190:
+/***/ 226:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(5);
+var Rx_1 = __webpack_require__(214);
+__webpack_require__(170);
+var MySharedService = (function () {
+    function MySharedService() {
+        var _this = this;
+        this.dataChange = new Rx_1.Observable(function (observer) {
+            _this.dataChangeObserver = observer;
+        });
+    }
+    MySharedService.prototype.setData = function (data) {
+        this.data = data;
+        this.dataChangeObserver.next(this.data);
+    };
+    return MySharedService;
+}());
+MySharedService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], MySharedService);
+exports.MySharedService = MySharedService;
+//# sourceMappingURL=D:/Mobile/WORKSPACE/Wiki/wiki-project-client/src/MySharedService.js.map
+
+/***/ }),
+
+/***/ 227:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -93,7 +179,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
+var core_1 = __webpack_require__(5);
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -110,7 +196,7 @@ exports.AppComponent = AppComponent;
 
 /***/ }),
 
-/***/ 191:
+/***/ 228:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -122,23 +208,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-var platform_browser_1 = __webpack_require__(46);
-var common_1 = __webpack_require__(38);
-var animations_1 = __webpack_require__(189);
-var app_component_1 = __webpack_require__(190);
-var dropdown_1 = __webpack_require__(354);
-var tabs_1 = __webpack_require__(356);
-var nav_dropdown_directive_1 = __webpack_require__(195);
-var ng2_charts_1 = __webpack_require__(351);
-var sidebar_directive_1 = __webpack_require__(196);
-var aside_directive_1 = __webpack_require__(193);
-var breadcrumb_component_1 = __webpack_require__(194);
+var core_1 = __webpack_require__(5);
+var platform_browser_1 = __webpack_require__(62);
+var common_1 = __webpack_require__(49);
+var animations_1 = __webpack_require__(225);
+var app_component_1 = __webpack_require__(227);
+var dropdown_1 = __webpack_require__(391);
+var tabs_1 = __webpack_require__(393);
+var nav_dropdown_directive_1 = __webpack_require__(232);
+var ng2_charts_1 = __webpack_require__(388);
+var sidebar_directive_1 = __webpack_require__(233);
+var aside_directive_1 = __webpack_require__(230);
+var breadcrumb_component_1 = __webpack_require__(231);
 // Routing Module
-var app_routing_1 = __webpack_require__(192);
+var app_routing_1 = __webpack_require__(229);
 //Layouts
-var full_layout_component_1 = __webpack_require__(99);
-var simple_layout_component_1 = __webpack_require__(100);
+var full_layout_component_1 = __webpack_require__(118);
+var simple_layout_component_1 = __webpack_require__(119);
+var MySharedService_1 = __webpack_require__(226);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -163,7 +250,8 @@ AppModule = __decorate([
             sidebar_directive_1.SIDEBAR_TOGGLE_DIRECTIVES,
             aside_directive_1.AsideToggleDirective,
         ],
-        providers: [{
+        providers: [MySharedService_1.MySharedService,
+            {
                 provide: common_1.LocationStrategy,
                 useClass: common_1.HashLocationStrategy,
             }
@@ -176,7 +264,7 @@ exports.AppModule = AppModule;
 
 /***/ }),
 
-/***/ 192:
+/***/ 229:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -188,11 +276,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-var router_1 = __webpack_require__(92);
+var core_1 = __webpack_require__(5);
+var router_1 = __webpack_require__(116);
 //Layouts
-var full_layout_component_1 = __webpack_require__(99);
-var simple_layout_component_1 = __webpack_require__(100);
+var full_layout_component_1 = __webpack_require__(118);
+var simple_layout_component_1 = __webpack_require__(119);
 exports.routes = [
     {
         path: '',
@@ -242,7 +330,7 @@ exports.AppRoutingModule = AppRoutingModule;
 
 /***/ }),
 
-/***/ 193:
+/***/ 230:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -257,7 +345,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
+var core_1 = __webpack_require__(5);
 /**
 * Allows the aside to be toggled via click.
 */
@@ -287,7 +375,7 @@ exports.AsideToggleDirective = AsideToggleDirective;
 
 /***/ }),
 
-/***/ 194:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -302,9 +390,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-var router_1 = __webpack_require__(92);
-__webpack_require__(95);
+var core_1 = __webpack_require__(5);
+var router_1 = __webpack_require__(116);
+__webpack_require__(108);
 var BreadcrumbsComponent = (function () {
     function BreadcrumbsComponent(router, route) {
         this.router = router;
@@ -347,7 +435,7 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 195:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -362,7 +450,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
+var core_1 = __webpack_require__(5);
 var NavDropdownDirective = (function () {
     function NavDropdownDirective(el) {
         this.el = el;
@@ -412,7 +500,7 @@ var _a;
 
 /***/ }),
 
-/***/ 196:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -427,7 +515,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
+var core_1 = __webpack_require__(5);
 /**
 * Allows the sidebar to be toggled via click.
 */
@@ -550,7 +638,7 @@ exports.SIDEBAR_TOGGLE_DIRECTIVES = [SidebarToggleDirective, SidebarMinimizeDire
 
 /***/ }),
 
-/***/ 197:
+/***/ 234:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -567,66 +655,20 @@ exports.environment = {
 
 /***/ }),
 
-/***/ 365:
+/***/ 402:
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"app-header navbar ab\">\n  <!--\n  -->\n  <button class=\"navbar-toggler mobile-sidebar-toggler d-lg-none\" type=\"button\">&#9776;</button>\n\n  <ul class=\"nav navbar-nav d-md-down-none\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link navbar-toggler sidebar-toggler\" href=\"#\">&#9776;</a>\n    </li>\n    <ol class=\"breadcrumb hidden-md-down\">\n      <breadcrumbs></breadcrumbs>\n    </ol>\n\n  </ul>\n  <ul class=\"nav navbar-nav ml-auto d-md-down-none\">\n    <li class=\"nav-item\" dropdown (onToggle)=\"toggled($event)\">\n      <a class=\"nav-link navbar-toggler dropdown-toggle\" dropdownToggle (click)=\"false\"><i class=\"fa fa-ellipsis-v\"></i></a>\n      <div class=\"dropdown-menu dropdown-menu-right\" *dropdownMenu aria-labelledby=\"simple-dropdown\">\n        <!--<a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-shield\"></i> Lock account</a>-->\n        <a class=\"dropdown-item\" [routerLink]=\"['/login']\"><i class=\"fa fa-lock\"></i> Déconnexion</a>\n      </div>\n\n    </li>\n\n  </ul>\n</header>\n\n\n<div class=\"app-body\">\n  <div class=\"sidebar mobile-sidebar-toggler sidebar-ab\">\n    <div class=\"bg-primary-dark-op\">\n      <nav class=\"sidebar-nav\">\n        <div class=\"block\">\n          <div class=\"block-content text-center overflow-hidden\">\n            <div class=\"push-30-t push animated fadeInDown\">\n              <img class=\"img-avatar img-avatar96 img-avatar-thumb\" src=\"assets/img/avatars/avatar-badr.jpg\" alt=\"\">\n            </div>\n            <div class=\"push-30 animated fadeInUp\">\n              <h2 class=\"h5 font-w600 text-white push-5\">Argane Badr</h2>\n              <h3 class=\"h6 text-gray\">Manager</h3>\n            </div>\n          </div>\n        </div>\n\n        <ul class=\"nav\">\n\n          <li class=\"nav-item\">\n            <a class=\"nav-link\" routerLinkActive=\"active\" [routerLink]=\"['/dashboard']\"><i class=\"icon-tag\"></i>Déclarations </a>\n          </li>\n        </ul>\n      </nav>\n    </div>\n  </div>\n\n  <!-- Main content -->\n  <main class=\"main\">\n\n    <!-- Breadcrumb -->\n    <div class=\"container-fluid\">\n      <router-outlet></router-outlet>\n    </div>\n    <!-- /.conainer-fluid -->\n  </main>\n</div>\n\n<footer class=\"app-footer\">\n  <a href=\"http://www.soprabanking.com\">Sopra banking software</a> &copy; 2017 .\n</footer>\n"
+module.exports = "<header class=\"app-header navbar ab\">\n  <!--\n  -->\n  <button class=\"navbar-toggler mobile-sidebar-toggler d-lg-none\" type=\"button\">&#9776;</button>\n\n  <ul class=\"nav navbar-nav d-md-down-none\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link navbar-toggler sidebar-toggler\" href=\"#\">&#9776;</a>\n    </li>\n    <ol class=\"breadcrumb hidden-md-down\">\n      <breadcrumbs></breadcrumbs>\n    </ol>\n  </ul>\n  \n  <ul class=\"nav navbar-nav ml-auto \">\n    <li class=\"nav-item\" dropdown (onToggle)=\"toggled($event)\">\n      <a class=\"nav-link navbar-toggler dropdown-toggle\" dropdownToggle (click)=\"false\"><i class=\"fa fa-ellipsis-v\"></i></a>\n      <div class=\"dropdown-menu dropdown-menu-right\" *dropdownMenu aria-labelledby=\"simple-dropdown\">\n        <!--<a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-shield\"></i> Lock account</a>-->\n        <a class=\"dropdown-item\" [routerLink]=\"['/login']\"><i class=\"fa fa-lock\"></i> Déconnexion</a>\n      </div>\n    </li>\n  </ul>\n</header>\n\n\n<div class=\"app-body\">\n  <div class=\"sidebar mobile-sidebar-toggler sidebar-ab\">\n    <div class=\"bg-primary-dark-op\">\n      <nav class=\"sidebar-nav\">\n        <div class=\"block\">\n          <div class=\"block-content text-center overflow-hidden\">\n            <div class=\"push-30-t push animated fadeInDown\">\n              <img class=\"img-avatar img-avatar96 img-avatar-thumb\" src=\"assets/img/avatars/avatar-badr.jpg\" alt=\"\">\n            </div>\n            <div class=\"push-30 animated fadeInUp\">\n              <h2 class=\"h5 font-w600 text-white push-5\">Argane Badr</h2>\n              <h3 class=\"h6 text-gray\">Manager</h3>\n            </div>\n          </div>\n        </div>\n\n        <ul class=\"nav\">\n\n          <li class=\"nav-item\">\n            <a class=\"nav-link\" routerLinkActive=\"active\" [routerLink]=\"['/dashboard']\"><i class=\"icon-tag\"></i>Déclarations </a>\n          </li>\n        </ul>\n      </nav>\n    </div>\n  </div>\n\n  <!-- Main content -->\n  <main class=\"main\">\n\n    <!-- Breadcrumb -->\n    <div class=\"container-fluid\">\n      <router-outlet></router-outlet>\n    </div>\n    <!-- /.conainer-fluid -->\n  </main>\n</div>\n\n<footer class=\"app-footer\">\n  <a href=\"http://www.soprabanking.com\">Sopra banking software</a> &copy; 2017 .\n</footer>\n"
 
 /***/ }),
 
-/***/ 374:
+/***/ 661:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(157);
+module.exports = __webpack_require__(208);
 
-
-/***/ }),
-
-/***/ 99:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(1);
-var FullLayoutComponent = (function () {
-    function FullLayoutComponent() {
-        this.disabled = false;
-        this.status = { isopen: false };
-        this.date = new Date();
-        this.user = JSON.parse(localStorage.getItem('currentUser'));
-    }
-    FullLayoutComponent.prototype.toggled = function (open) {
-        console.log('Dropdown is now: ', open);
-    };
-    FullLayoutComponent.prototype.toggleDropdown = function ($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        this.status.isopen = !this.status.isopen;
-    };
-    FullLayoutComponent.prototype.ngOnInit = function () { };
-    return FullLayoutComponent;
-}());
-FullLayoutComponent = __decorate([
-    core_1.Component({
-        selector: 'app-dashboard',
-        template: __webpack_require__(365)
-    }),
-    __metadata("design:paramtypes", [])
-], FullLayoutComponent);
-exports.FullLayoutComponent = FullLayoutComponent;
-//# sourceMappingURL=D:/Mobile/WORKSPACE/Wiki/wiki-project-client/src/full-layout.component.js.map
 
 /***/ })
 
-},[374]);
+},[661]);
 //# sourceMappingURL=main.bundle.js.map
