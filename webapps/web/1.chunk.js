@@ -8411,7 +8411,7 @@ var core_1 = __webpack_require__(5);
 var http_1 = __webpack_require__(668);
 __webpack_require__(213);
 var AuthenticationService = (function () {
-    //baseurl: string = "http://localhost:8080/wiki-project-web";
+    // baseurl: string = "http://localhost:8080/wiki-project-web";
     function AuthenticationService(http) {
         this.http = http;
         this.baseurl = "http://awiki4.azurewebsites.net/wiki-project-web";
@@ -8427,12 +8427,14 @@ var AuthenticationService = (function () {
             // login successful if there's a jwt token in the response
             // let token = response.json() && response.json().token;
             // if (token) {
+            var username = response.json() && response.json().principal.username;
+            var token = "Basic " + btoa(username + ":" + password);
             if (response) {
                 //     // set token property
                 //     this.token = token;
                 sessionStorage.authenticated = true;
                 //     // store username and jwt token in local storage to keep user logged in between page refreshes
-                //     localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
+                localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
                 // return true to indicate successful login
                 return true;
             }
@@ -8499,7 +8501,7 @@ var DeclarationService = (function () {
     }
     DeclarationService.prototype.getDeclarations = function () {
         // add authorization header with jwt token
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json', "Authorization": "Basic " + btoa(this.user.username + ":" + this.user.password) });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json', "Authorization": this.user.token });
         // let headers = new Headers({ 'Accept': 'application/json' });
         // headers.append('Authorization', "Basic "  +  btoa("relamrani:sopra"));
         var options = new http_1.RequestOptions({ headers: headers });
@@ -8510,7 +8512,7 @@ var DeclarationService = (function () {
     };
     DeclarationService.prototype.changeStatus = function (status, reference) {
         var putCommentUrl = this.baseurl + "/api/v1/tickets/" + reference + "/" + status;
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json', "Authorization": "Basic " + btoa(this.user.username + ":" + this.user.password) });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json', "Authorization": this.user.token });
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append("Access-Control-Allow-Credentials", "true");
         headers.append("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE");
