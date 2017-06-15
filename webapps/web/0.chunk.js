@@ -10035,16 +10035,18 @@ var AuthenticationService = (function () {
         this.token = currentUser && currentUser.token;
     }
     AuthenticationService.prototype.login = function (username, password) {
-        var headers = { authorization: "Basic " + btoa(username + ":" + password) };
+        var headers = new http_1.Headers({ 'Authorization': "Basic " + btoa(username + ":" + password) });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var body = { username: username, password: password };
         // login(username: string, password: string): boolean {
-        return this.http.get(this.baseurl + '/api/v1/user', headers)
+        return this.http.post(this.baseurl + '/login', JSON.stringify(body), options)
             .map(function (response) {
             // login successful if there's a jwt token in the response
             // let token = response.json() && response.json().token;
             // if (token) {
-            var username = response.json() && response.json().principal.username;
-            var token = "Basic " + btoa(username + ":" + password);
             if (response) {
+                var token = response.headers.get('Authorization');
+                console.log(token);
                 //     // set token property
                 //     this.token = token;
                 sessionStorage.authenticated = true;
